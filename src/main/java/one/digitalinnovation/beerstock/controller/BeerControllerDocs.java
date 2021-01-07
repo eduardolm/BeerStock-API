@@ -9,6 +9,7 @@ import one.digitalinnovation.beerstock.dto.QuantityDTO;
 import one.digitalinnovation.beerstock.exception.BeerAlreadyRegisteredException;
 import one.digitalinnovation.beerstock.exception.BeerNotFoundException;
 import one.digitalinnovation.beerstock.exception.BeerStockExceededException;
+import one.digitalinnovation.beerstock.exception.BeerStockLessThanZeroException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -44,4 +45,18 @@ public interface BeerControllerDocs {
             @ApiResponse(code = 404, message = "Beer with given id not found.")
     })
     void deleteById(@PathVariable Long id) throws BeerNotFoundException;
+
+    @ApiOperation(value = "Increment quantity of beers in stock")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Final quantity cannot be greater than max quantity"),
+            @ApiResponse(code = 404, message = "Beer with given id not found.")
+    })
+    BeerDTO increment(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO) throws BeerNotFoundException, BeerStockExceededException;
+
+    @ApiOperation(value = "Decrement quantity of beers in stock")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Final quantity cannot be smaller than zero"),
+            @ApiResponse(code = 404, message = "Beer with given id not found.")
+    })
+    BeerDTO decrement(@PathVariable Long id, @RequestBody QuantityDTO quantityDTO) throws BeerNotFoundException, BeerStockLessThanZeroException;
 }
