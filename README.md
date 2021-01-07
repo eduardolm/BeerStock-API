@@ -13,6 +13,10 @@ Durante a sessão, serão abordados os seguintes tópicos:
 * Desenvolvimento de testes unitários para validação de funcionalides básicas: criação, listagem, consulta por nome e exclusão de cervejas.
 * TDD: apresentação e exemplo prático em 2 funcionaliades importantes: incremento e decremento do número de cervejas no estoque.
 
+Antes de executar o projeto, é necessário preencher os valores adequados, de acordo com as configurações do banco de dados H2 no arquivo:
+> src/main/resources/application-dev.properties
+
+Renomear o arquivo para application.properties
 Para executar o projeto no terminal, digite o seguinte comando:
 
 ```shell script
